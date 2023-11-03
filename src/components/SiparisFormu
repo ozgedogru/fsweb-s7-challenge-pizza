@@ -1,0 +1,4 @@
+function SiparisFormu() {
+  return;
+}
+export default SiparisFormu;
