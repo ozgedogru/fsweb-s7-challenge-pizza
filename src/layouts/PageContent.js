@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom/";
 import HomePage from "../pages/HomaPage";
 import OrderPage from "../pages/OrderPage";
 import SuccessPage from "../pages/SuccessPage";
-import Header from "./Header";
 
 function PageContent() {
   return (
@@ -12,14 +11,13 @@ function PageContent() {
         <Route path="/" exact>
           <HomePage />
         </Route>
+        <Route path="/pizza" exact>
+          <OrderPage />
+        </Route>
+        <Route path="/siparis">
+          <SuccessPage />
+        </Route>
       </Switch>
-      <Route path="/pizza" exact>
-        <Header />
-        <OrderPage />
-      </Route>
-      <Route path="/siparis">
-        <SuccessPage />
-      </Route>
     </div>
   );
 }
