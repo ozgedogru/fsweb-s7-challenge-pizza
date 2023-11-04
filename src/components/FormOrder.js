@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 
 function FormOrder() {
@@ -10,7 +10,6 @@ function FormOrder() {
     "Mısır",
     "Sucuk",
     "Kanada Jambonu",
-    "Sucuk",
     "Ananas",
     "Tavuk Izgara",
     "Jalepeno",
@@ -18,6 +17,42 @@ function FormOrder() {
     "Soğan",
     "Sarımsak",
   ];
+
+  const formInitial = {
+    isim: "",
+    boyut: "",
+    hamur: "",
+    malzemeler: [],
+  };
+  const [formData, setFormData] = useState(formInitial);
+
+  function submitHandler(e) {
+    e.preventDefault();
+  }
+
+  function changeHandler(e) {
+    const { name, value, checked } = e.target;
+
+    if (name === "boyut" || name === "hamur") {
+      setFormData({ ...formData, [name]: value });
+    } else if (name === "malzemeler") {
+      if (checked) {
+        setFormData({
+          ...formData,
+          malzemeler: [...formData.malzemeler, value],
+        });
+      } else {
+        setFormData({
+          ...formData,
+          malzemeler: formData.malzemeler.filter((m) => m !== value),
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const [adet, setAdet] = useState(1);
 
@@ -31,27 +66,50 @@ function FormOrder() {
     }
   }
 
-  function submitHandler(e) {
-    console.log(e.target.value);
-  }
-
   return (
     <div>
       <Form onSubmit={submitHandler}>
         <Form.Group>
           <Form.Label> Boyut Seç </Form.Label>
-          <Form.Check type="checkbox" label="Küçük"></Form.Check>
-          <Form.Check type="checkbox" label="Orta"></Form.Check>
-          <Form.Check type="checkbox" label="Büyük"></Form.Check>
+          <Form.Check
+            type="checkbox"
+            name="boyut"
+            label="Küçük"
+            value="Küçük"
+            onChange={changeHandler}
+            checked={formData.name}
+          ></Form.Check>
+          <Form.Check
+            type="checkbox"
+            name="boyut"
+            label="Orta"
+            value="Orta"
+            onChange={changeHandler}
+            checked={formData.name}
+          ></Form.Check>
+          <Form.Check
+            type="checkbox"
+            name="boyut"
+            label="Büyük"
+            value="Büyük"
+            onChange={changeHandler}
+            checked={formData.name}
+          ></Form.Check>
         </Form.Group>
       </Form>
       <Form.Group>
         <Form.Label> Hamur Seç </Form.Label>
-        <Form.Select>
-          <option>Hamur Kalınlığı</option>
-          <option>İnce Kenar</option>
-          <option>Klasik Kenar</option>
-          <option>Kalın Kenar</option>{" "}
+        <Form.Select
+          name="hamur"
+          value={formData.hamur}
+          onChange={changeHandler}
+        >
+          <option value={""} default disabled>
+            Hamur Kalınlığı
+          </option>
+          <option value="İnce Kenar">İnce Kenar</option>
+          <option value="Klasik Kenar">Klasik Kenar</option>
+          <option value="Kalın Kenar">Kalın Kenar</option>
         </Form.Select>
       </Form.Group>
       <Form.Group>
@@ -59,14 +117,20 @@ function FormOrder() {
         {ekMalzemeList.map((malzeme, index) => (
           <Form.Check
             type="checkbox"
+            name="malzemeler"
             key={index}
-            label={`${malzeme}`}
+            label={malzeme}
+            value={malzeme}
+            onChange={changeHandler}
           ></Form.Check>
         ))}
       </Form.Group>
       <Form.Group>
         <Form.Label>Sipariş Notu</Form.Label>
-        <Form.Control placeholder="Siparişine eklemek istediğin bir not var mı?"></Form.Control>
+        <Form.Control
+          onChange={changeHandler}
+          placeholder="Siparişine eklemek istediğin bir not var mı?"
+        ></Form.Control>
       </Form.Group>
       <Form.Group>
         <div>
