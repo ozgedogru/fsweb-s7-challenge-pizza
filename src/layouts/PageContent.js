@@ -6,19 +6,17 @@ import SuccessPage from "../pages/SuccessPage";
 
 function PageContent() {
   return (
-    <div>
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/pizza" exact>
-          <OrderPage />
-        </Route>
-        <Route path="/siparis">
-          <SuccessPage />
-        </Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route path="/" exact>
+        <HomePage />
+      </Route>
+      <Route path="/pizza" exact>
+        <OrderPage />
+      </Route>
+      <Route path="/siparis">
+        <SuccessPage />
+      </Route>
+    </Switch>
   );
 }
 

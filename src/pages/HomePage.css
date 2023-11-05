@@ -1,0 +1,56 @@
+.section {
+  width: 100%;
+  height: 100vh;
+  background: #ce2829;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.section h1 {
+  text-align: center;
+  width: 100%;
+  color: #faf7f2;
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+.section h2 {
+  text-align: center;
+  width: 100%;
+  color: #faf7f2;
+  letter-spacing: 1.5px;
+  font-weight: lighter;
+}
+
+.section img {
+  width: 70%;
+}
+
+#order-button {
+  display: flex;
+  justify-content: center;
+}
+
+#order-pizza {
+  border-radius: 50px;
+  background: #fdc913;
+  color: #292929;
+  text-decoration: none;
+
+  display: flex;
+  height: 56px;
+  padding: 3.734px 50.159px 0.266px 49.641px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Barlow", sans-serif;
+}
