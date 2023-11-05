@@ -4,12 +4,16 @@ import "./Header.css";
 
 function Header() {
   return (
-    <Navbar className="header">
-      <h1>Teknolojik Yemekler</h1>
-      <NavLink>Ana Sayfa</NavLink>
-      <NavLink>Secenekler</NavLink>
-      <NavLink>Siparis Olustur</NavLink>
-    </Navbar>
+    <div className="header">
+      <Navbar>
+        <h1>Teknolojik Yemekler</h1>
+        <div className="menu">
+          <NavLink>Ana Sayfa</NavLink>
+          <> - </>
+          <NavLink id="selected">Sipariş Oluştur</NavLink>
+        </div>
+      </Navbar>
+    </div>
   );
 }
 

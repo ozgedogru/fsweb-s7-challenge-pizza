@@ -1,5 +1,27 @@
 .header {
-  border-bottom: 1px solid #c20608;
-  background: #ce2829;
-  box-shadow: 0px 9px 150px -30px rgba(0, 0, 0, 0.09);
+  display: flex;
+  background-color: #ce2829;
+  color: #ffffff;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.header h1 {
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 400;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.Navbar {
+  width: 30%;
+}
+
+.menu {
+  width: 30vw;
+  padding: 0 1rem;
+}
+
+#selected {
+  font-weight: bolder;
 }
