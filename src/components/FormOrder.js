@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+import "./FormOrder.css";
 
 function FormOrder() {
   const ekMalzemeList = [
     "Pepperoni",
-    "Domates",
-    "Biber",
-    "Sosis",
-    "Mısır",
-    "Sucuk",
-    "Kanada Jambonu",
-    "Ananas",
     "Tavuk Izgara",
-    "Jalepeno",
-    "Kabak",
-    "Soğan",
+    "Mısır",
     "Sarımsak",
+    "Ananas",
+    "Sosis",
+    "Soğan",
+    "Sucuk",
+    "Biber",
+    "Kabak",
+    "Kanada Jambonu",
+    "Domates",
+    "Jalepeno",
   ];
 
   const formInitial = {
-    isim: "",
+    isim: "Position Absolute Acı Pizza",
     boyut: "",
     hamur: "",
     malzemeler: [],
+    ozel: "",
   };
   const [formData, setFormData] = useState(formInitial);
 
@@ -33,7 +36,7 @@ function FormOrder() {
   function changeHandler(e) {
     const { name, value, checked } = e.target;
 
-    if (name === "boyut" || name === "hamur") {
+    if (name === "boyut" || name === "hamur" || name === "ozel") {
       setFormData({ ...formData, [name]: value });
     } else if (name === "malzemeler") {
       if (checked) {
@@ -69,83 +72,119 @@ function FormOrder() {
   return (
     <div>
       <Form id="pizza-form" onSubmit={submitHandler}>
-        <Form.Group id="size-dropdown">
-          <Form.Label> Boyut Seç </Form.Label>
-          <Form.Check
-            type="checkbox"
-            name="boyut"
-            label="Küçük"
-            value="Küçük"
-            onChange={changeHandler}
-            checked={formData.name}
-          ></Form.Check>
-          <Form.Check
-            type="checkbox"
-            name="boyut"
-            label="Orta"
-            value="Orta"
-            onChange={changeHandler}
-            checked={formData.name}
-          ></Form.Check>
-          <Form.Check
-            type="checkbox"
-            name="boyut"
-            label="Büyük"
-            value="Büyük"
-            onChange={changeHandler}
-            checked={formData.name}
-          ></Form.Check>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label> Hamur Seç </Form.Label>
-          <Form.Select
-            name="hamur"
-            value={formData.hamur}
-            onChange={changeHandler}
-          >
-            <option value={""} default disabled>
-              Hamur Kalınlığı
-            </option>
-            <option value="İnce Kenar">İnce Kenar</option>
-            <option value="Klasik Kenar">Klasik Kenar</option>
-            <option value="Kalın Kenar">Kalın Kenar</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Ek Malzemeler</Form.Label>
-          <p>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
-          {ekMalzemeList.map((malzeme, index) => (
-            <Form.Check
-              type="checkbox"
-              name="malzemeler"
-              key={index}
-              label={malzeme}
-              value={malzeme}
-              onChange={changeHandler}
-            ></Form.Check>
-          ))}
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Sipariş Notu</Form.Label>
-          <Form.Control
-            id="special-text"
-            onChange={changeHandler}
-            placeholder="Siparişine eklemek istediğin bir not var mı?"
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <div>
-            <button onClick={arttir}>+</button>
-            <div>{adet}</div>
-            <button onClick={azalt}>-</button>
+        <div className="boyut-hamur">
+          <div className="boyut">
+            <Form.Group id="size-dropdown">
+              <Form.Label>
+                {" "}
+                Boyut Seç <span>*</span>
+              </Form.Label>
+              <Form.Check
+                type="radio"
+                name="boyut"
+                label="Küçük"
+                value="Küçük"
+                onChange={changeHandler}
+                checked={formData.name}
+              ></Form.Check>
+              <Form.Check
+                type="radio"
+                name="boyut"
+                label="Orta"
+                value="Orta"
+                onChange={changeHandler}
+                checked={formData.name}
+              ></Form.Check>
+              <Form.Check
+                type="radio"
+                name="boyut"
+                label="Büyük"
+                value="Büyük"
+                onChange={changeHandler}
+                checked={formData.name}
+              ></Form.Check>
+            </Form.Group>
           </div>
-        </Form.Group>
-        <div>
-          Sipariş Toplamı
-          <div>Seçimler</div>
-          <div>Toplam {85.5 + formData.malzemeler.length * 5}</div>
+          <div className="hamur">
+            <Form.Group id="dough-check">
+              <Form.Label>
+                {" "}
+                Hamur Seç <span>*</span>{" "}
+              </Form.Label>
+              <Form.Select
+                name="hamur"
+                value={formData.hamur}
+                onChange={changeHandler}
+              >
+                <option value={""} default disabled>
+                  Hamur Kalınlığı
+                </option>
+                <option value="İnce Kenar">İnce Kenar</option>
+                <option value="Klasik Kenar">Klasik Kenar</option>
+                <option value="Kalın Kenar">Kalın Kenar</option>
+              </Form.Select>
+            </Form.Group>
+          </div>
         </div>
-        <button id="order-button">SİPARİŞ VER</button>
+        <div className="malzeme">
+          <Form.Group className="malzeme">
+            <Form.Label>Ek Malzemeler</Form.Label>
+            <p>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
+            <div className="ek-malzeme">
+              {ekMalzemeList.map((malzeme, index) => (
+                <Form.Check
+                  type="checkbox"
+                  name="malzemeler"
+                  key={index}
+                  label={malzeme}
+                  value={malzeme}
+                  onChange={changeHandler}
+                ></Form.Check>
+              ))}
+            </div>
+          </Form.Group>
+        </div>
+        <div className="siparis-notu">
+          <Form.Group>
+            <Form.Label>Sipariş Notu</Form.Label>
+            <Form.Control
+              id="special-text"
+              name="ozel"
+              onChange={changeHandler}
+              placeholder="Siparişine eklemek istediğin bir not var mı?"
+              type="text"
+              value={formData.ozel}
+            ></Form.Control>
+          </Form.Group>
+          <hr id="cizgi" />
+        </div>
+        <div className="fiyat">
+          <div className="adet-buton">
+            <button id="azalt" onClick={azalt}>
+              -
+            </button>
+            <div>{adet}</div>
+            <button id="arttir" onClick={arttir}>
+              +
+            </button>
+          </div>
+          <div className="siparis">
+            <div className="sip-content">
+              <div id="baslik">Sipariş Toplamı</div>
+              <div id="secim">
+                <div>Seçimler</div>
+                <div>{formData.malzemeler.length * 5}</div>
+              </div>
+              <div id="toplam">
+                <div>Toplam</div>
+                <div>{adet * (85.5 + formData.malzemeler.length * 5)}</div>
+              </div>
+            </div>
+            <Link id="order-button" to="/siparis">
+              SİPARİŞ VER
+            </Link>
+          </div>
+        </div>
       </Form>
     </div>
   );

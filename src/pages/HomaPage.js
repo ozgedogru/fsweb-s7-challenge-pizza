@@ -11,7 +11,7 @@ function HomePage() {
         <h2>
           KOD ACIKTIRIR <br /> PIZZA, DOYURUR
         </h2>
-        <div id="order-button">
+        <div id="order-button-home">
           <Link id="order-pizza" to="/pizza">
             ACIKTIM
           </Link>

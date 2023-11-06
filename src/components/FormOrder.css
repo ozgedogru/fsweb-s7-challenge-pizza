@@ -1,0 +1,172 @@
+#pizza-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+
+.boyut-hamur {
+  display: flex;
+  width: 100%;
+}
+
+.boyut,
+.hamur {
+  min-width: 8rem;
+  width: 12rem;
+}
+
+#dough-check > * {
+  font-weight: 600;
+}
+
+#size-dropdown > div {
+  margin: 1rem 0;
+}
+
+.form-label {
+  font-weight: 600;
+  margin: 1rem 0;
+}
+.form-label > span {
+  font-weight: bold;
+  color: #ce2829;
+}
+
+.malzeme {
+  width: 100%;
+}
+
+.ek-malzeme {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 180px;
+}
+
+.ek-malzeme > div {
+  margin: 0.5rem 0;
+  color: #5f5f5f;
+  font-family: Barlow;
+  font-weight: 700;
+}
+
+.form-check-label {
+  margin-left: 0.3rem;
+}
+
+.siparis-notu {
+  width: 100%;
+  gap: 1rem;
+}
+.siparis-notu > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#special-text {
+  display: flex;
+  height: 56px;
+  width: 100%;
+  align-items: center;
+
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+}
+#cizgi {
+  margin: 1.5rem 0;
+}
+
+button {
+  border-radius: 0.2rem;
+  border: none;
+  background: #fdc913;
+}
+
+.fiyat {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+}
+
+.siparis {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.siparis > div {
+  border-radius: 0.4rem;
+  border: 1px solid #d9d9d9;
+  padding: 1rem;
+  width: 100%;
+}
+
+.adet-buton {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.adet-buton > * {
+  width: 3rem;
+  height: 3rem;
+}
+
+#order-button {
+  width: 100%;
+  border-radius: 0.2rem;
+  border: none;
+  background: #fdc913;
+  text-decoration: none;
+  text-align: center;
+}
+
+.adet-buton div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.4rem;
+  border: 1px solid #d9d9d9;
+}
+
+#baslik {
+  color: #292929;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+#secim {
+  color: #5f5f5f;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+#toplam {
+  color: #ce2829;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#order-button {
+  color: #292929;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 56px;
+}
+
+#azalt {
+  border-radius: 0.4rem 0 0 0.4rem;
+}
+#arttir {
+  border-radius: 0 0.4rem 0.4rem 0;
+}
