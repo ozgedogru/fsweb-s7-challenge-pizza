@@ -1,27 +1,26 @@
-.section {
+.hpage {
   background: #ce2829;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+  width: 100%;
+  padding-top: 2rem;
 }
 
 .content {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 5rem;
 }
 
-.section h1 {
+h1 {
   text-align: center;
   width: 100%;
   color: #faf7f2;
-  font-family: "Londrina Solid", sans-serif;
+  font-family: "Londrina Solid";
   font-weight: 400;
   font-size: 50px;
 }
 
-.section h2 {
+h2 {
   text-align: center;
   width: 100%;
   color: #faf7f2;
@@ -30,11 +29,24 @@
   font-size: 4rem;
 }
 
-.section img {
+.section-content {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.section-img {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+img {
   width: 70%;
 }
 
-#order-button-home {
+#order-button-homepage {
   display: flex;
   justify-content: center;
 }

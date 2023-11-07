@@ -57,25 +57,38 @@
   margin-left: 0.3rem;
 }
 
-.siparis-notu {
+.siparis-notu,
+.isim {
   width: 100%;
   gap: 1rem;
 }
-.siparis-notu > div {
+
+.siparis-notu > div,
+.isim > div {
   display: flex;
   flex-wrap: wrap;
 }
 
-#special-text {
+#isim-input {
   display: flex;
-  height: 56px;
+  height: 3rem;
   width: 100%;
   align-items: center;
-
   border-radius: 6px;
   border: 1px solid #d9d9d9;
   background: #fff;
 }
+
+#special-text {
+  display: flex;
+  height: 5rem;
+  width: 100%;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+}
+
 #cizgi {
   margin: 1.5rem 0;
 }

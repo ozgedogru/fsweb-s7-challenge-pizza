@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  flex-wrap: wrap;
   background-color: #ce2829;
   color: #ffffff;
   justify-content: center;
@@ -7,19 +8,21 @@
 }
 
 .header h1 {
+  flex-grow: 1;
+  width: 100%;
   font-family: "Londrina Solid", sans-serif;
   font-weight: 400;
   text-align: center;
   font-size: xx-large;
 }
 
-.Navbar {
-  width: 30%;
-}
-
 .menu {
   width: 30vw;
   padding: 0 1rem;
+}
+.menu > * {
+  text-decoration: none;
+  color: #ffffff;
 }
 
 #selected {

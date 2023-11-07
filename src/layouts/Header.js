@@ -1,18 +1,16 @@
 import React from "react";
-import { Navbar, NavLink } from "reactstrap";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
   return (
     <div className="header">
-      <Navbar>
-        <h1>Teknolojik Yemekler</h1>
-        <div className="menu">
-          <NavLink>Ana Sayfa</NavLink>
-          <> - </>
-          <NavLink id="selected">Sipariş Oluştur</NavLink>
-        </div>
-      </Navbar>
+      <h1>Teknolojik Yemekler</h1>
+      <div className="menu">
+        <Link to="/">Ana Sayfa</Link>
+        <> - </>
+        <Link id="selected">Sipariş Oluştur</Link>
+      </div>
     </div>
   );
 }

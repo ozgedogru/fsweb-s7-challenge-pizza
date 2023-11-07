@@ -1,23 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom/";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 import img from "../assets/banner.png";
 
 function HomePage() {
   return (
-    <div className="section">
+    <div className="hpage">
       <div className="content">
-        <h1>Teknolojik Yemekler</h1>
-        <h2>
-          KOD ACIKTIRIR <br /> PIZZA, DOYURUR
-        </h2>
-        <div id="order-button-home">
-          <Link id="order-pizza" to="/pizza">
-            ACIKTIM
-          </Link>
+        <div className="section-content">
+          <h1>Teknolojik Yemekler</h1>
+          <h2>
+            KOD ACIKTIRIR <br /> PIZZA, DOYURUR
+          </h2>
+          <div id="order-button-homepage">
+            <Link id="order-pizza" to="/pizza">
+              ACIKTIM
+            </Link>
+          </div>
+        </div>
+        <div className="section-img">
+          <img src={img}></img>
         </div>
       </div>
-      <img src={img}></img>
     </div>
   );
 }

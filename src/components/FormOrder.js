@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
 import "./FormOrder.css";
 
 function FormOrder() {
@@ -21,13 +22,31 @@ function FormOrder() {
   ];
 
   const formInitial = {
-    isim: "Position Absolute Acı Pizza",
+    isim: "",
     boyut: "",
     hamur: "",
     malzemeler: [],
     ozel: "",
   };
   const [formData, setFormData] = useState(formInitial);
+  const [formErrors, setFormErrors] = useState({
+    isim: "",
+    boyut: "",
+    hamur: "",
+    malzemeler: "",
+    ozel: "",
+  });
+  const [valid, setFormValid] = useState();
+
+  const formSchema = Yup.object().shape({
+    isim: Yup.string().min(2, "İsim en az 2 karakter olmalıdır."),
+    boyut: Yup.boolean().oneOf([true]),
+    hamur: Yup.string().required(),
+    malzemeler: Yup.array()
+      .min(4, "En az 4 malzeme ekleyin.")
+      .max(10, "En fazla 10 malzeme ekleyebilirsiniz."),
+    ozel: Yup.string(),
+  });
 
   function submitHandler(e) {
     e.preventDefault();
@@ -51,6 +70,15 @@ function FormOrder() {
         });
       }
     }
+
+    Yup.reach(formSchema, name)
+      .validate(value)
+      .then((valid) => {
+        setFormErrors({ ...formErrors, [name]: "" });
+      })
+      .catch((err) => {
+        setFormErrors({ ...formErrors, [name]: err.Errors });
+      });
   }
 
   useEffect(() => {
@@ -68,6 +96,15 @@ function FormOrder() {
       setAdet(adet - 1);
     }
   }
+
+  useEffect(() => {
+    formSchema.isValid(formData).then(
+      (valid) => {
+        setFormValid(valid);
+      },
+      [formData]
+    );
+  });
 
   return (
     <div>
@@ -144,6 +181,19 @@ function FormOrder() {
             </div>
           </Form.Group>
         </div>
+        <div className="isim">
+          <Form.Group>
+            <Form.Label>İsim</Form.Label>
+            <Form.Control
+              id="isim-input"
+              name="isim"
+              onChange={changeHandler}
+              placeholder="İsim"
+              type="text"
+              value={formData.name}
+            ></Form.Control>
+          </Form.Group>
+        </div>
         <div className="siparis-notu">
           <Form.Group>
             <Form.Label>Sipariş Notu</Form.Label>
@@ -153,7 +203,7 @@ function FormOrder() {
               onChange={changeHandler}
               placeholder="Siparişine eklemek istediğin bir not var mı?"
               type="text"
-              value={formData.ozel}
+              value={formData.name}
             ></Form.Control>
           </Form.Group>
           <hr id="cizgi" />
