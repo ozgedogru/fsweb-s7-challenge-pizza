@@ -13,7 +13,7 @@ function PageContent() {
       <Route path="/pizza" exact>
         <OrderPage />
       </Route>
-      <Route path="/siparis">
+      <Route path="/siparis" exact>
         <SuccessPage />
       </Route>
       <Route path="*">Page Not Found!</Route>

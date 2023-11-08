@@ -19,7 +19,7 @@ function HomePage() {
           </div>
         </div>
         <div className="section-img">
-          <img src={img}></img>
+          <img src={img} alt="pizzabanner"></img>
         </div>
       </div>
     </div>
