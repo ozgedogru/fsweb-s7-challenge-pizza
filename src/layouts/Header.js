@@ -9,7 +9,9 @@ function Header() {
       <div className="menu">
         <Link to="/">Ana Sayfa</Link>
         <> - </>
-        <Link id="selected">Sipariş Oluştur</Link>
+        <Link to="/pizza" id="selected">
+          Sipariş Oluştur
+        </Link>
       </div>
     </div>
   );
