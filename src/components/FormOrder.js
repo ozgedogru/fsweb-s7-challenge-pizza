@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import * as Yup from "yup";
 import "./FormOrder.css";
 
@@ -36,12 +37,15 @@ function FormOrder() {
     malzemeler: "",
     ozel: "",
   });
-  const [valid, setFormValid] = useState();
+  const [formValid, setFormValid] = useState(true);
+  const history = useHistory();
 
   const formSchema = Yup.object().shape({
-    isim: Yup.string().min(2, "İsim en az 2 karakter olmalıdır."),
-    boyut: Yup.boolean().oneOf([true]),
-    hamur: Yup.string().required(),
+    isim: Yup.string()
+      .required("İsim giriniz.")
+      .min(2, "İsim en az 2 karakter olmalıdır."),
+    boyut: Yup.string().required("Seçiniz."),
+    hamur: Yup.string().required("Seçiniz."),
     malzemeler: Yup.array()
       .min(4, "En az 4 malzeme ekleyin.")
       .max(10, "En fazla 10 malzeme ekleyebilirsiniz."),
@@ -50,61 +54,98 @@ function FormOrder() {
 
   function submitHandler(e) {
     e.preventDefault();
+
+    for (let key in formData) {
+      checkValidationFor(key, formData[key]);
+    }
+
+    if (formValid) {
+      axios
+        .post("https://reqres.in/api/pizza/s7", formData)
+        .then((response) => {
+          console.log("Siparisiniz alindi!", response.data);
+          history.push("/siparis");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   function changeHandler(e) {
     const { name, value, checked } = e.target;
 
-    if (name === "boyut" || name === "hamur" || name === "ozel") {
+    if (name !== "malzemeler") {
       setFormData({ ...formData, [name]: value });
     } else if (name === "malzemeler") {
       if (checked) {
         setFormData({
           ...formData,
-          malzemeler: [...formData.malzemeler, value],
+          [name]: [...formData.malzemeler, value],
         });
       } else {
         setFormData({
           ...formData,
-          malzemeler: formData.malzemeler.filter((m) => m !== value),
+          [name]: formData.malzemeler.filter((m) => m !== value),
         });
       }
     }
-
-    Yup.reach(formSchema, name)
-      .validate(value)
-      .then((valid) => {
-        setFormErrors({ ...formErrors, [name]: "" });
-      })
-      .catch((err) => {
-        setFormErrors({ ...formErrors, [name]: err.Errors });
-      });
+    checkValidationFor(
+      name,
+      name === "malzemeler" ? formData.malzemeler : value
+    );
   }
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  const checkValidationFor = (field, value) => {
+    Yup.reach(formSchema, field)
+      .validate(field === "malzemeler" ? formData.malzemeler : value)
+      .then((valid) => {
+        setFormErrors({ ...formErrors, [field]: "" });
+      })
+      .catch((err) => {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [field]: err.errors[0],
+        }));
+      });
+  };
 
   const [adet, setAdet] = useState(1);
-
   function arttir() {
     setAdet(adet + 1);
   }
-
   function azalt() {
     if (adet > 0) {
       setAdet(adet - 1);
     }
   }
 
+  const [fiyat, setFiyat] = useState(85.5);
   useEffect(() => {
-    formSchema.isValid(formData).then(
-      (valid) => {
-        setFormValid(valid);
-      },
-      [formData]
-    );
+    if (formData.boyut === "Küçük") {
+      setFiyat(adet * (80 + formData.malzemeler.length * 5));
+    } else if (formData.boyut === "Orta") {
+      setFiyat(adet * (85.5 + formData.malzemeler.length * 5));
+    } else if (formData.boyut === "Büyük") {
+      setFiyat(adet * (90 + formData.malzemeler.length * 5));
+    }
+  }, [formData, adet]);
+
+  const [secim, setSecim] = useState();
+  useEffect(() => {
+    setSecim(formData.malzemeler.length * 5);
   });
+
+  useEffect(() => {
+    formSchema.isValid(formData).then((valid) => {
+      setFormValid(valid);
+      console.log("Form data >", formData);
+    });
+  }, [formData]);
+
+  useEffect(() => {
+    console.log("Form error > ", formErrors);
+  }, [formErrors]);
 
   return (
     <div>
@@ -122,7 +163,8 @@ function FormOrder() {
                 label="Küçük"
                 value="Küçük"
                 onChange={changeHandler}
-                checked={formData.name}
+                checked={formData.boyut === "Küçük"}
+                isInvalid={!!formErrors.boyut}
               ></Form.Check>
               <Form.Check
                 type="radio"
@@ -130,7 +172,8 @@ function FormOrder() {
                 label="Orta"
                 value="Orta"
                 onChange={changeHandler}
-                checked={formData.name}
+                checked={formData.boyut === "Orta"}
+                isInvalid={!!formErrors.boyut}
               ></Form.Check>
               <Form.Check
                 type="radio"
@@ -138,8 +181,12 @@ function FormOrder() {
                 label="Büyük"
                 value="Büyük"
                 onChange={changeHandler}
-                checked={formData.name}
+                checked={formData.boyut === "Büyük"}
+                isInvalid={!!formErrors.boyut}
               ></Form.Check>
+              <Form.Control.Feedback type="invalid">
+                {formErrors.boyut}
+              </Form.Control.Feedback>
             </Form.Group>
           </div>
           <div className="hamur">
@@ -152,6 +199,7 @@ function FormOrder() {
                 name="hamur"
                 value={formData.hamur}
                 onChange={changeHandler}
+                isInvalid={!!formErrors.hamur}
               >
                 <option value={""} default disabled>
                   Hamur Kalınlığı
@@ -160,13 +208,16 @@ function FormOrder() {
                 <option value="Klasik Kenar">Klasik Kenar</option>
                 <option value="Kalın Kenar">Kalın Kenar</option>
               </Form.Select>
+              <Form.Control.Feedback type="invalid">
+                {formErrors.hamur}
+              </Form.Control.Feedback>
             </Form.Group>
           </div>
         </div>
         <div className="malzeme">
-          <Form.Group className="malzeme">
+          <Form.Group className="malzemeler-checkbox">
             <Form.Label>Ek Malzemeler</Form.Label>
-            <p>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
+            <p>En fazla 10 malzeme seçebilirsiniz. 5₺</p>
             <div className="ek-malzeme">
               {ekMalzemeList.map((malzeme, index) => (
                 <Form.Check
@@ -176,9 +227,17 @@ function FormOrder() {
                   label={malzeme}
                   value={malzeme}
                   onChange={changeHandler}
+                  isInvalid={!!formErrors.malzemeler}
+                  disabled={
+                    formData.malzemeler.length >= 10 &&
+                    !formData.malzemeler.includes(malzeme)
+                  }
                 ></Form.Check>
               ))}
             </div>
+            <Form.Control.Feedback type="invalid">
+              {formErrors.malzemeler}
+            </Form.Control.Feedback>
           </Form.Group>
         </div>
         <div className="isim">
@@ -191,7 +250,11 @@ function FormOrder() {
               placeholder="İsim"
               type="text"
               value={formData.name}
+              isInvalid={!!formErrors.isim}
             ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {formErrors.isim}
+            </Form.Control.Feedback>
           </Form.Group>
         </div>
         <div className="siparis-notu">
@@ -210,11 +273,11 @@ function FormOrder() {
         </div>
         <div className="fiyat">
           <div className="adet-buton">
-            <button id="azalt" onClick={azalt}>
+            <button id="azalt" type="button" onClick={azalt}>
               -
             </button>
             <div>{adet}</div>
-            <button id="arttir" onClick={arttir}>
+            <button id="arttir" type="button" onClick={arttir}>
               +
             </button>
           </div>
@@ -223,16 +286,16 @@ function FormOrder() {
               <div id="baslik">Sipariş Toplamı</div>
               <div id="secim">
                 <div>Seçimler</div>
-                <div>{formData.malzemeler.length * 5}</div>
+                <div>{secim}</div>
               </div>
               <div id="toplam">
                 <div>Toplam</div>
-                <div>{adet * (85.5 + formData.malzemeler.length * 5)}</div>
+                <div>{fiyat}</div>
               </div>
             </div>
-            <Link id="order-button" to="/siparis">
+            <button id="order-button" type="submit">
               SİPARİŞ VER
-            </Link>
+            </button>
           </div>
         </div>
       </Form>

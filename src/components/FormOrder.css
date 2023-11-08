@@ -137,6 +137,7 @@ button {
   background: #fdc913;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
 }
 
 .adet-buton div {
@@ -179,7 +180,15 @@ button {
 
 #azalt {
   border-radius: 0.4rem 0 0 0.4rem;
+  cursor: pointer;
 }
 #arttir {
   border-radius: 0 0.4rem 0.4rem 0;
+  cursor: pointer;
+}
+
+.invalid-feedback {
+  color: #ce2829;
+  font-weight: 600px;
+  font-weight: bold;
 }
