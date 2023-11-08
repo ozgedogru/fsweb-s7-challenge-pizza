@@ -20,7 +20,7 @@
   font-weight: 600;
 }
 
-#size-dropdown > div {
+#size-radio > div {
   margin: 1rem 0;
 }
 
@@ -69,7 +69,7 @@
   flex-wrap: wrap;
 }
 
-#isim-input {
+#name-input {
   display: flex;
   height: 3rem;
   width: 100%;

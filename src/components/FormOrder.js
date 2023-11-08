@@ -152,7 +152,7 @@ function FormOrder() {
       <Form id="pizza-form" onSubmit={submitHandler}>
         <div className="boyut-hamur">
           <div className="boyut">
-            <Form.Group id="size-dropdown">
+            <Form.Group id="size-radio">
               <Form.Label>
                 {" "}
                 Boyut Seç <span>*</span>
@@ -244,7 +244,7 @@ function FormOrder() {
           <Form.Group>
             <Form.Label>İsim</Form.Label>
             <Form.Control
-              id="isim-input"
+              id="name-input"
               name="isim"
               onChange={changeHandler}
               placeholder="İsim"
