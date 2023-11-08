@@ -16,6 +16,7 @@ function PageContent() {
       <Route path="/siparis">
         <SuccessPage />
       </Route>
+      <Route path="*">Page Not Found!</Route>
     </Switch>
   );
 }
