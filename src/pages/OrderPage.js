@@ -9,7 +9,7 @@ function OrderPage() {
       <Header />
       <div className="container">
         <div>
-          <h3 id="name-input">Position Absolute Acı Pizza</h3>
+          <h3>Position Absolute Acı Pizza</h3>
           <div className="fiyat-sabit">
             <h4>85.50₺</h4>
             <span>4.9</span>
