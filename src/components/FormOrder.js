@@ -5,7 +5,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import "./FormOrder.css";
 
-function FormOrder() {
+function FormOrder({ siparis, setSiparis }) {
   const ekMalzemeList = [
     "Pepperoni",
     "Tavuk Izgara",
@@ -47,7 +47,7 @@ function FormOrder() {
     boyut: Yup.string().required("Seçiniz."),
     hamur: Yup.string().required("Seçiniz."),
     malzemeler: Yup.array()
-      .min(4, "En az 4 malzeme ekleyin.")
+      .min(3, "En az 4 malzeme ekleyin.")
       .max(10, "En fazla 10 malzeme ekleyebilirsiniz."),
     ozel: Yup.string(),
   });
@@ -60,10 +60,13 @@ function FormOrder() {
     }
 
     if (formValid) {
+      // setSiparis(formData) && history.push("/siparis");
       axios
         .post("https://reqres.in/api/pizza/s7", formData)
         .then((response) => {
           console.log("Siparisiniz alindi!", response.data);
+
+          setSiparis(formData);
           history.push("/siparis");
         })
         .catch((err) => {
@@ -143,9 +146,13 @@ function FormOrder() {
     });
   }, [formData]);
 
-  useEffect(() => {
-    console.log("Form error > ", formErrors);
-  }, [formErrors]);
+  // useEffect(() => {
+  //   takeOrder();
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("Form error > ", formErrors);
+  // }, [formErrors]);
 
   return (
     <div>

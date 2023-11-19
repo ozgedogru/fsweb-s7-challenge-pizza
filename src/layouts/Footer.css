@@ -1,0 +1,65 @@
+.footer {
+  display: flex;
+  background-color: #1a1a1a;
+  padding: 1rem 3rem 2rem 3rem;
+}
+
+.footer * {
+  color: #fff;
+  font-family: "Barlow";
+  display: inline-block;
+}
+
+.footer h2 {
+  font-family: "Londrina Solid";
+  text-align: start;
+  margin-left: 1rem;
+}
+.footer h3,
+.footer h2 {
+  width: 100%;
+}
+
+.iletisim {
+  display: flex;
+  flex-wrap: wrap;
+}
+.iletisim h2 {
+  font-size: 4rem;
+}
+.iletisim div {
+  width: 100%;
+}
+
+.iletisim img {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 1rem;
+}
+
+.menu-icerik {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-icerik p {
+  width: 100%;
+}
+
+.instagram {
+  display: flex;
+  flex-wrap: wrap;
+}
+.instagram h3 {
+  width: 100%;
+}
+.instagram img {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.5rem;
+}
+
+.menu-icerik,
+.instagram {
+  margin-top: 5rem;
+}

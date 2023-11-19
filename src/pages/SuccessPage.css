@@ -1,31 +1,80 @@
 .spage {
   background: #ce2829;
+  color: #faf7f2;
   width: 100%;
   padding-top: 2rem;
   height: 100vh;
 }
 
-.content {
+.scontent {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5rem;
 }
 
-h1 {
+.teknolojik-yemekler {
+  width: 100%;
+  margin: 1rem 0 2rem 0;
+}
+.onay {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.onay hr {
+  width: 100%;
+}
+
+.onay-detay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.onay-detay div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.spage h1 {
   text-align: center;
   width: 100%;
-  color: #faf7f2;
   font-family: "Londrina Solid", sans-serif;
   font-weight: 400;
   font-size: 50px;
 }
 
-h2 {
+.spage h2 {
   text-align: center;
   width: 100%;
   color: #faf7f2;
-  letter-spacing: 1.5px;
   font-weight: lighter;
-  font-size: 4rem;
+  font-size: 5rem;
+  margin: 0;
+}
+
+.scontent h3 {
+  color: #fdc913;
+  text-align: center;
+  font-family: "Satisfy";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+}
+
+.onay-detay h4 {
+  font-size: 2rem;
+}
+.siparis-bilgi {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 2rem;
+  font-size: 1.2rem;
+  font-family: "Barlow";
 }

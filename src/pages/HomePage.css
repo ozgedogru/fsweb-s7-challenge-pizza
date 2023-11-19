@@ -1,32 +1,42 @@
 .hpage {
-  background: #ce2829;
   width: 100%;
-  padding-top: 2rem;
+}
+.hcontent {
+  background: #faf7f2;
 }
 
-.content {
+.hpage > .content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5rem;
 }
 
-h1 {
+.hcontent h1 {
   text-align: center;
   width: 100%;
   color: #faf7f2;
   font-family: "Londrina Solid";
   font-weight: 400;
-  font-size: 50px;
+  font-size: 3rem;
 }
 
-h2 {
+.hcontent h2 {
   text-align: center;
   width: 100%;
   color: #faf7f2;
   letter-spacing: 1.5px;
   font-weight: lighter;
   font-size: 4rem;
+  margin: 0;
+}
+.background-main h3 {
+  color: #fdc913;
+  text-align: center;
+  font-family: "Satisfy";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
 }
 
 .section-content {
@@ -36,13 +46,188 @@ h2 {
   justify-content: center;
 }
 
-.section-img {
+.background-main {
+  background-image: url(".././assets/mvp-banner.png");
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  height: 50rem;
+}
+
+.homepagemenu,
+.altsection {
+  width: 70%;
+  margin: auto;
+}
+.homepagemenu img,
+.paketler img {
+  width: 2rem;
+  height: 2rem;
+}
+.homepagemenu ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+.homepagemenu li {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.ustsection,
+.altsection {
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ustsection > div,
+.altsection > div {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.ustsection button {
+  border-radius: 50px;
+  background: #fff;
+  color: #ce2829;
+  text-align: center;
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  padding: 1rem;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+.ustsection button:hover {
+  font-size: 20px;
+}
+.ustsection > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lezzetus {
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url("../assets/adv-aseets/kart-1.png");
+  border-radius: 0.5rem;
+  height: 30rem;
+  width: 29rem;
+  padding: 1.5rem;
+  margin-right: 1rem;
+}
+.lezzetus h2 {
+  color: #fff;
+  font-family: "Quattrocento";
+  font-size: 4rem;
+}
+.lezzetus p,
+.hackathlon h3 {
+  color: #fff;
+  font-family: "Barlow";
+  font-size: 1.5rem;
+}
+.hackathlon {
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url("../assets/adv-aseets/kart-2.png");
+  border-radius: 0.5rem;
+  height: 13rem;
+  width: 29rem;
+  padding: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+.npm {
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url("../assets/adv-aseets/kart-3.png");
+  border-radius: 0.5rem;
+  height: 13rem;
+  width: 29rem;
+  padding: 1.5rem;
+}
+
+.npm span {
+  color: #ce2829;
+}
+#temp {
+  display: flex;
+  flex-wrap: wrap;
+}
+.altsection h3 {
+  color: #ce2829;
+  font-family: "Satisfy";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+}
+.altsection h2 {
+  color: #292929;
+  font-family: "Barlow";
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 600;
+}
+.paketler {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.paketler button {
+  border-radius: 2rem;
+  background: #fff;
+  width: 8rem;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  padding: 0 0.5rem;
+  transition-duration: 0.4s;
+}
+.paketler button:hover {
+  color: #fff;
+  background: #292929;
+}
+.ucpizza {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.ucpizza div {
+  background: #fff;
+  text-align: center;
+}
+
+.ucpizza div div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #292929;
+  font-family: "Barlow";
+  font-size: 1.2rem;
+  font-style: normal;
+}
+.ucpizza > div > p,
+.ucpizza span {
+  font-weight: 600;
+}
+
+.section-footer {
   width: 100%;
 }
 
-img {
+.hpage img {
   width: 70%;
 }
 
@@ -55,8 +240,8 @@ img {
   border-radius: 50px;
   background: #fdc913;
   color: #292929;
+  margin: 1rem 0 3rem 0;
   text-decoration: none;
-
   display: flex;
   height: 56px;
   padding: 3.734px 50.159px 0.266px 49.641px;

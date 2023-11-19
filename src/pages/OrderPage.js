@@ -1,14 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import FormOrder from "../components/FormOrder.js";
+import Footer from "../layouts/Footer.jsx";
 import Header from "../layouts/Header.js";
 import "./OrderPage.css";
+import advbanner from "../assets/adv-aseets/adv-form-banner.png";
 
-function OrderPage() {
+function OrderPage({ siparis, setSiparis }) {
   return (
     <div>
       <Header />
       <div className="container">
         <div>
+          <img src={advbanner} alt="banner"></img>
+          <div className="menu">
+            <Link to="/">Ana Sayfa</Link>
+            <> - </>
+            <Link to="/pizza" id="selected">
+              Sipariş Oluştur
+            </Link>
+          </div>
           <h3>Position Absolute Acı Pizza</h3>
           <div className="fiyat-sabit">
             <h4>85.50₺</h4>
@@ -25,9 +36,10 @@ function OrderPage() {
             kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta
             denir.
           </p>
-          <FormOrder />
+          <FormOrder siparis={siparis} setSiparis={setSiparis} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

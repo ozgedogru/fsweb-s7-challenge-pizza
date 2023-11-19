@@ -4,17 +4,17 @@ import HomePage from "../pages/HomaPage";
 import OrderPage from "../pages/OrderPage";
 import SuccessPage from "../pages/SuccessPage";
 
-function PageContent() {
+function PageContent({ siparis, setSiparis }) {
   return (
     <Switch>
       <Route path="/" exact>
         <HomePage />
       </Route>
       <Route path="/pizza" exact>
-        <OrderPage />
+        <OrderPage siparis={siparis} setSiparis={setSiparis} />
       </Route>
       <Route path="/siparis">
-        <SuccessPage />
+        <SuccessPage siparis={siparis} />
       </Route>
       <Route path="*">Page Not Found!</Route>
     </Switch>
