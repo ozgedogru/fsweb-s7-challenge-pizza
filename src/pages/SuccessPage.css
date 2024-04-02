@@ -78,3 +78,14 @@
   font-size: 1.2rem;
   font-family: "Barlow";
 }
+
+.error-message {
+  background: #ffcccc;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}

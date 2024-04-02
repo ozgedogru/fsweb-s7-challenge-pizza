@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./SuccessPage.css";
 
 function SuccessPage({ siparis }) {
+  useEffect(() => {
+    console.log("siparis > ", siparis);
+  }, []);
+
+  if (!siparis) {
+    return <div className="error-message">Sipariş bilgisi bulunamadı.</div>;
+  }
+
   return (
     <div className="spage">
       <div className="scontent">
